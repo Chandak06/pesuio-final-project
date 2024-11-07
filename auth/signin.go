@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"github.com/anuragrao04/pesuio-final-project/database"
 	"github.com/anuragrao04/pesuio-final-project/models"
 	"github.com/gin-gonic/gin"
 )
@@ -16,8 +17,11 @@ func Signin(c *gin.Context) {
 	}
 
 	// implement
+	value, data := database.CheckPassword(request.Username, request.Password)
 
 	c.JSON(200, gin.H{
 		"success": true,
+		"message": value,
+		"record":  data,
 	})
 }
